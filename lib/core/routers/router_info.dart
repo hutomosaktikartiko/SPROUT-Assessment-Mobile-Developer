@@ -4,13 +4,13 @@ import '../../shared/config/route_config.dart';
 
 class RouterInfo {
   static GoRouter router = GoRouter(
-    initialLocation: RouteConfig.pokedex.path,
+    initialLocation: RouteConfig.pokemon.path,
     debugLogDiagnostics: true,
     routerNeglect: true,
     routes: [
-      RouteConfig.pokedex.goRoute(
+      RouteConfig.pokemon.goRoute(
         routes: [
-          RouteConfig.pokedexDetails.goRoute(),
+          RouteConfig.pokemonDetails.goRoute(),
         ],
       ),
     ],

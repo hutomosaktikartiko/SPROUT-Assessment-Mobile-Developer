@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../errors/failure.dart';
-import '../observers/logger.dart';
+import '../../errors/failure.dart';
+import '../../observers/logger.dart';
 
-abstract class RemoteDataSource {
+abstract class RemoteSource {
   Future<Response> post({
     required String url,
     Map<String, dynamic>? data,
@@ -38,10 +38,10 @@ abstract class RemoteDataSource {
   });
 }
 
-class RemoteDataSourceImpl implements RemoteDataSource {
+class RemoteSourceImpl implements RemoteSource {
   final Dio dio;
 
-  RemoteDataSourceImpl({
+  RemoteSourceImpl({
     required this.dio,
   });
 

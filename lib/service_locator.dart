@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/datasources/remote_data_source.dart';
+import 'core/data/sources/remote_source.dart';
 import 'core/networks/network_info.dart';
 import 'core/observers/dio_interceptor.dart';
 import 'core/utils/toast_info.dart';
@@ -38,8 +38,8 @@ Future<void> _core() async {
   });
 
   // remote data source
-  sl.registerLazySingleton<RemoteDataSource>(() {
-    return RemoteDataSourceImpl(
+  sl.registerLazySingleton<RemoteSource>(() {
+    return RemoteSourceImpl(
       dio: sl(),
     );
   });
@@ -61,14 +61,14 @@ Future<void> _pokemon() async {
   //     secureStorageInfo: sl(),
   //   );
   // });
-  // sl.registerLazySingleton<AuthRemoteDataSource>(() {
-  //   return AuthRemoteDataSourceImpl(
-  //     remoteDataSource: sl(),
+  // sl.registerLazySingleton<AuthRemoteSource>(() {
+  //   return AuthRemoteSourceImpl(
+  //     RemoteSource: sl(),
   //   );
   // });
-  // sl.registerLazySingleton<DeviceRemoteDataSource>(() {
-  //   return DeviceRemoteDataSourceImpl(
-  //     remoteDataSource: sl(),
+  // sl.registerLazySingleton<DeviceRemoteSource>(() {
+  //   return DeviceRemoteSourceImpl(
+  //     RemoteSource: sl(),
   //   );
   // });
 
@@ -84,7 +84,7 @@ Future<void> _pokemon() async {
   //   return DeviceRepositoryImpl(
   //     networkInfo: sl(),
   //     authLocalDataSource: sl(),
-  //     deviceRemoteDataSource: sl(),
+  //     deviceRemoteSource: sl(),
   //   );
   // });
 

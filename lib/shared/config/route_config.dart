@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/pokemon/presentation/pages/pokedex_details_page.dart';
-import '../../features/pokemon/presentation/pages/pokedex_page.dart';
+import '../../features/pokemon/presentation/pages/pokemon_page.dart';
+import '../../features/pokemon/presentation/pages/pokemon_details_page.dart';
 
 enum RouteConfig {
-  pokedex,
-  pokedexDetails,
+  pokemon,
+  pokemonDetails,
 }
 
 extension RouteConfigParsing on RouteConfig {
   String get name {
     switch (this) {
-      case RouteConfig.pokedex:
-        return 'POKEDEX';
-      case RouteConfig.pokedexDetails:
-        return 'POKEDEX_DETAILS';
+      case RouteConfig.pokemon:
+        return 'POKEMON';
+      case RouteConfig.pokemonDetails:
+        return 'POKEMON_DETAILS';
     }
   }
 
   String get path {
     switch (this) {
-      case RouteConfig.pokedex:
-        return '/pokedex';
-      case RouteConfig.pokedexDetails:
-        return 'pokedex-details';
+      case RouteConfig.pokemon:
+        return '/pokemon';
+      case RouteConfig.pokemonDetails:
+        return 'pokemon-details';
     }
   }
 
@@ -32,11 +32,11 @@ extension RouteConfigParsing on RouteConfig {
     Map? params,
   }) {
     switch (this) {
-      case RouteConfig.pokedex:
-        return const PokedexPage();
-      case RouteConfig.pokedexDetails:
-        return PokedexDetailsPage(
-          params: params?['params'] as PokedexDetailsPageParams,
+      case RouteConfig.pokemon:
+        return const PokemonPage();
+      case RouteConfig.pokemonDetails:
+        return PokemonDetailsPage(
+          params: params?['params'] as PokemonDetailsPageParams,
         );
     }
   }
