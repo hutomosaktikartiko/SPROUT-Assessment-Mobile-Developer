@@ -1,4 +1,4 @@
-import 'package:sprout_pokemon/features/pokemon/domain/entities/pokemon_species_entity.dart';
+import 'pokemon_species_entity.dart';
 
 class PokemonEntity {
   final int id;

@@ -49,6 +49,8 @@ class PokemonCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Wrap(
+                      runSpacing: 2,
+                      spacing: 5,
                       children: pokemon.types
                           .map(
                             (type) => Chip(

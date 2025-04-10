@@ -5,13 +5,11 @@ import 'package:get_it/get_it.dart';
 import 'core/data/sources/remote_source.dart';
 import 'core/networks/network_info.dart';
 import 'core/observers/dio_interceptor.dart';
-import 'core/utils/toast_info.dart';
 import 'features/pokemon/data/repositories/pokemon_repository_impl.dart';
 import 'features/pokemon/data/sources/pokemon_remote_source.dart';
 import 'features/pokemon/domain/repositories/pokemon_repository.dart';
 import 'features/pokemon/domain/usecases/get_pokemon_species_usecase.dart';
 import 'features/pokemon/domain/usecases/get_pokemons_with_details_usecase.dart';
-import 'features/pokemon/presentation/bloc/pokemon_details/pokemon_details_bloc.dart';
 import 'features/pokemon/presentation/bloc/pokemon_list/pokemon_list_bloc.dart';
 
 final sl = GetIt.instance;
@@ -39,11 +37,6 @@ Future<void> _extnernal() async {
 }
 
 Future<void> _core() async {
-  // toast info
-  sl.registerLazySingleton<ToastInfo>(() {
-    return ToastInfoImpl();
-  });
-
   // remote data source
   sl.registerLazySingleton<RemoteSource>(() {
     return RemoteSourceImpl(
@@ -93,11 +86,6 @@ Future<void> _pokemon() async {
   sl.registerFactory<PokemonListBloc>(() {
     return PokemonListBloc(
       getPokemonsWithDetailsUsecase: sl(),
-    );
-  });
-  sl.registerFactory<PokemonDetailsBloc>(() {
-    return PokemonDetailsBloc(
-      getSpecies: sl(),
     );
   });
 }
