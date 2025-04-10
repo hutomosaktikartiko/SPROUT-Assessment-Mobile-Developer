@@ -7,5 +7,9 @@ class ThemeConfig {
     fontFamily: 'Poppins',
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     dividerColor: ColorConfig.greyDivider,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    ),
   );
 }
