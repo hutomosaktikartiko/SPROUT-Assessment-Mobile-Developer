@@ -138,9 +138,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
               child: AnimatedScale(
                 duration: const Duration(milliseconds: 300),
                 scale: imageScale.clamp(0.5, 1.0),
-                child: SvgPicture.network(
-                  widget.params.pokemon.dreamWorldUrl,
-                  height: 200,
+                child: Hero(
+                  tag: widget.params.pokemon.id,
+                  child: SvgPicture.network(
+                    widget.params.pokemon.dreamWorldUrl,
+                    height: 200,
+                  ),
                 ),
               ),
             ),

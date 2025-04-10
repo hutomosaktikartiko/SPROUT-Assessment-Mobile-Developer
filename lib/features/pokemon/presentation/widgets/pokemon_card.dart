@@ -73,12 +73,15 @@ class PokemonCard extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Image.network(
-                      pokemon.officialArtworkUrl,
-                      height: 95,
-                      fit: BoxFit.contain,
+                    child: Hero(
+                      tag: pokemon.id,
+                      child: Image.network(
+                        pokemon.officialArtworkUrl,
+                        height: 95,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

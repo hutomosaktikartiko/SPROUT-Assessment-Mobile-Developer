@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../animations/animated_item.dart';
+
 class ResponsiveWrap extends StatelessWidget {
   final List<Widget> children;
   final double itemWidth;
@@ -22,13 +24,18 @@ class ResponsiveWrap extends StatelessWidget {
 
         if (totalWidth < itemWidth * 2) {
           return Wrap(
-            children: children
-                .map((child) => SizedBox(
-                      width: totalWidth,
-                      height: itemHeight,
-                      child: child,
-                    ))
-                .toList(),
+            spacing: maxSpacing,
+            runSpacing: maxSpacing,
+            children: List.generate(children.length, (index) {
+              return SizedBox(
+                width: totalWidth,
+                height: itemHeight,
+                child: AnimatedItem(
+                  delay: Duration(milliseconds: 50 * index),
+                  child: children[index],
+                ),
+              );
+            }),
           );
         }
 
@@ -42,13 +49,16 @@ class ResponsiveWrap extends StatelessWidget {
         return Wrap(
           spacing: maxSpacing,
           runSpacing: maxSpacing,
-          children: children
-              .map((child) => SizedBox(
-                    width: adjustedItemWidth,
-                    height: itemHeight,
-                    child: child,
-                  ))
-              .toList(),
+          children: List.generate(children.length, (index) {
+            return SizedBox(
+              width: adjustedItemWidth,
+              height: itemHeight,
+              child: AnimatedItem(
+                delay: Duration(milliseconds: 50 * index),
+                child: children[index],
+              ),
+            );
+          }),
         );
       },
     );
