@@ -14,6 +14,9 @@ _$_PokemonSpeciesModel _$$_PokemonSpeciesModelFromJson(
           ?.map((e) => NamedResourceModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       hatchCounter: json['hatch_counter'] as int?,
+      color: json['color'] == null
+          ? null
+          : NamedResourceModel.fromJson(json['color'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PokemonSpeciesModelToJson(
@@ -22,4 +25,5 @@ Map<String, dynamic> _$$_PokemonSpeciesModelToJson(
       'gender_rate': instance.genderRate,
       'egg_groups': instance.eggGroups,
       'hatch_counter': instance.hatchCounter,
+      'color': instance.color,
     };

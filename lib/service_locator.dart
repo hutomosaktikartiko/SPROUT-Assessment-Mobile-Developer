@@ -6,6 +6,13 @@ import 'core/data/sources/remote_source.dart';
 import 'core/networks/network_info.dart';
 import 'core/observers/dio_interceptor.dart';
 import 'core/utils/toast_info.dart';
+import 'features/pokemon/data/repositories/pokemon_repository_impl.dart';
+import 'features/pokemon/data/sources/pokemon_remote_source.dart';
+import 'features/pokemon/domain/repositories/pokemon_repository.dart';
+import 'features/pokemon/domain/usecases/get_pokemon_species_usecase.dart';
+import 'features/pokemon/domain/usecases/get_pokemons_with_details_usecase.dart';
+import 'features/pokemon/presentation/bloc/pokemon_details/pokemon_details_bloc.dart';
+import 'features/pokemon/presentation/bloc/pokemon_list/pokemon_list_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -55,90 +62,42 @@ Future<void> _core() async {
 Future<void> _shared() async {}
 
 Future<void> _pokemon() async {
-  // // data source
-  // sl.registerLazySingleton<AuthLocalDataSource>(() {
-  //   return AuthLocalDataSourceImpl(
-  //     secureStorageInfo: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<AuthRemoteSource>(() {
-  //   return AuthRemoteSourceImpl(
-  //     RemoteSource: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<DeviceRemoteSource>(() {
-  //   return DeviceRemoteSourceImpl(
-  //     RemoteSource: sl(),
-  //   );
-  // });
+  // data source
+  sl.registerLazySingleton<PokemonRemoteSource>(() {
+    return PokemonRemoteSourceImpl(
+      remoteSource: sl(),
+    );
+  });
 
-  // // repository
-  // sl.registerLazySingleton<AuthRepository>(() {
-  //   return AuthRepositoryImpl(
-  //     networkInfo: sl(),
-  //     authLocalDataSource: sl(),
-  //     authRemoteDataSouce: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<DeviceRepository>(() {
-  //   return DeviceRepositoryImpl(
-  //     networkInfo: sl(),
-  //     authLocalDataSource: sl(),
-  //     deviceRemoteSource: sl(),
-  //   );
-  // });
+  // repository
+  sl.registerLazySingleton<PokemonRepository>(() {
+    return PokemonRepositoryImpl(
+      networkInfo: sl(),
+      pokemonRemoteSource: sl(),
+    );
+  });
 
-  // // use case
-  // sl.registerLazySingleton<GetAccessTokenUseCase>(() {
-  //   return GetAccessTokenUseCase(
-  //     authRepository: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<LoginUseCase>(() {
-  //   return LoginUseCase(
-  //     authRepository: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<LogoutUseCase>(() {
-  //   return LogoutUseCase(
-  //     authRepository: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<RegisterDeviceUseCase>(() {
-  //   return RegisterDeviceUseCase(
-  //     deviceRepository: sl(),
-  //   );
-  // });
-  // sl.registerLazySingleton<GetDevicesUseCase>(() {
-  //   return GetDevicesUseCase(
-  //     deviceRepository: sl(),
-  //   );
-  // });
+  // use case
+  sl.registerLazySingleton<GetPokemonsWithDetailsUsecase>(() {
+    return GetPokemonsWithDetailsUsecase(
+      pokemonRepository: sl(),
+    );
+  });
+  sl.registerLazySingleton<GetPokemonSpeciesUsecase>(() {
+    return GetPokemonSpeciesUsecase(
+      pokemonRepository: sl(),
+    );
+  });
 
-  // // cubit
-  // sl.registerFactory<AuthCubit>(() {
-  //   return AuthCubit(
-  //     getAccessTokenUseCase: sl(),
-  //     loginUseCase: sl(),
-  //   );
-  // });
-  // sl.registerFactory<FullScreenLoadingCubit>(() {
-  //   return FullScreenLoadingCubit();
-  // });
-  // sl.registerFactory<DeviceInfoCubit>(() {
-  //   return DeviceInfoCubit(
-  //     deviceInfoPlugin: sl(),
-  //   );
-  // });
-  // sl.registerFactory<DeviceCubit>(() {
-  //   return DeviceCubit(
-  //     registerDeviceUseCase: sl(),
-  //     getDevicesUseCase: sl(),
-  //   );
-  // });
-  // sl.registerFactory<OneSignalCubit>(() {
-  //   return OneSignalCubit(
-  //     oneSignalInfo: sl(),
-  //   );
-  // });
+  // bloc
+  sl.registerFactory<PokemonListBloc>(() {
+    return PokemonListBloc(
+      getPokemonsWithDetailsUsecase: sl(),
+    );
+  });
+  sl.registerFactory<PokemonDetailsBloc>(() {
+    return PokemonDetailsBloc(
+      getSpecies: sl(),
+    );
+  });
 }

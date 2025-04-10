@@ -1,14 +1,17 @@
 import '../../../../core/data/models/named_resource_model.dart';
 import '../../domain/entities/pokemon_entity.dart';
+import '../../domain/entities/pokemon_species_entity.dart';
 import '../models/pokemon_model.dart';
 
 extension PokemonModelMapper on PokemonModel {
-  PokemonEntity toEntity() {
+  PokemonEntity toEntity({
+    required PokemonSpeciesEntity species,
+  }) {
     return PokemonEntity(
       id: id ?? 0,
       name: name ?? 'Unknown',
       types: types?.map((t) => t.type?.name ?? 'Unknown').toList() ?? [],
-      speciesUrl: species?.url ?? '',
+      speciesUrl: this.species?.url ?? '',
       height: height ?? 0,
       weight: weight ?? 0,
       abilities:
@@ -21,6 +24,9 @@ extension PokemonModelMapper on PokemonModel {
         specialDefense: _getStat('special-defense'),
         speed: _getStat('speed'),
       ),
+      dreamWorldUrl: sprites?.other?.dreamWorld?.frontDefault ?? '',
+      officialArtworkUrl: sprites?.other?.officialArtwork?.frontDefault ?? '',
+      species: species,
     );
   }
 

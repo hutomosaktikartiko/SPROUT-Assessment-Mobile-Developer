@@ -28,6 +28,8 @@ mixin _$PokemonModel {
   int? get weight => throw _privateConstructorUsedError;
   List<AbilitySlotModel>? get abilities => throw _privateConstructorUsedError;
   List<StatModel>? get stats => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sprites')
+  SpritesModel? get sprites => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +51,11 @@ abstract class $PokemonModelCopyWith<$Res> {
       int? height,
       int? weight,
       List<AbilitySlotModel>? abilities,
-      List<StatModel>? stats});
+      List<StatModel>? stats,
+      @JsonKey(name: 'sprites') SpritesModel? sprites});
 
   $SpeciesModelCopyWith<$Res>? get species;
+  $SpritesModelCopyWith<$Res>? get sprites;
 }
 
 /// @nodoc
@@ -75,6 +79,7 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
     Object? weight = freezed,
     Object? abilities = freezed,
     Object? stats = freezed,
+    Object? sprites = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -109,6 +114,10 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as List<StatModel>?,
+      sprites: freezed == sprites
+          ? _value.sprites
+          : sprites // ignore: cast_nullable_to_non_nullable
+              as SpritesModel?,
     ) as $Val);
   }
 
@@ -121,6 +130,18 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
 
     return $SpeciesModelCopyWith<$Res>(_value.species!, (value) {
       return _then(_value.copyWith(species: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SpritesModelCopyWith<$Res>? get sprites {
+    if (_value.sprites == null) {
+      return null;
+    }
+
+    return $SpritesModelCopyWith<$Res>(_value.sprites!, (value) {
+      return _then(_value.copyWith(sprites: value) as $Val);
     });
   }
 }
@@ -141,10 +162,13 @@ abstract class _$$_PokemonModelCopyWith<$Res>
       int? height,
       int? weight,
       List<AbilitySlotModel>? abilities,
-      List<StatModel>? stats});
+      List<StatModel>? stats,
+      @JsonKey(name: 'sprites') SpritesModel? sprites});
 
   @override
   $SpeciesModelCopyWith<$Res>? get species;
+  @override
+  $SpritesModelCopyWith<$Res>? get sprites;
 }
 
 /// @nodoc
@@ -166,6 +190,7 @@ class __$$_PokemonModelCopyWithImpl<$Res>
     Object? weight = freezed,
     Object? abilities = freezed,
     Object? stats = freezed,
+    Object? sprites = freezed,
   }) {
     return _then(_$_PokemonModel(
       id: freezed == id
@@ -200,6 +225,10 @@ class __$$_PokemonModelCopyWithImpl<$Res>
           ? _value._stats
           : stats // ignore: cast_nullable_to_non_nullable
               as List<StatModel>?,
+      sprites: freezed == sprites
+          ? _value.sprites
+          : sprites // ignore: cast_nullable_to_non_nullable
+              as SpritesModel?,
     ));
   }
 }
@@ -215,7 +244,8 @@ class _$_PokemonModel implements _PokemonModel {
       this.height,
       this.weight,
       final List<AbilitySlotModel>? abilities,
-      final List<StatModel>? stats})
+      final List<StatModel>? stats,
+      @JsonKey(name: 'sprites') this.sprites})
       : _types = types,
         _abilities = abilities,
         _stats = stats;
@@ -264,8 +294,12 @@ class _$_PokemonModel implements _PokemonModel {
   }
 
   @override
+  @JsonKey(name: 'sprites')
+  final SpritesModel? sprites;
+
+  @override
   String toString() {
-    return 'PokemonModel(id: $id, name: $name, types: $types, species: $species, height: $height, weight: $weight, abilities: $abilities, stats: $stats)';
+    return 'PokemonModel(id: $id, name: $name, types: $types, species: $species, height: $height, weight: $weight, abilities: $abilities, stats: $stats, sprites: $sprites)';
   }
 
   @override
@@ -281,7 +315,8 @@ class _$_PokemonModel implements _PokemonModel {
             (identical(other.weight, weight) || other.weight == weight) &&
             const DeepCollectionEquality()
                 .equals(other._abilities, _abilities) &&
-            const DeepCollectionEquality().equals(other._stats, _stats));
+            const DeepCollectionEquality().equals(other._stats, _stats) &&
+            (identical(other.sprites, sprites) || other.sprites == sprites));
   }
 
   @JsonKey(ignore: true)
@@ -295,7 +330,8 @@ class _$_PokemonModel implements _PokemonModel {
       height,
       weight,
       const DeepCollectionEquality().hash(_abilities),
-      const DeepCollectionEquality().hash(_stats));
+      const DeepCollectionEquality().hash(_stats),
+      sprites);
 
   @JsonKey(ignore: true)
   @override
@@ -320,7 +356,8 @@ abstract class _PokemonModel implements PokemonModel {
       final int? height,
       final int? weight,
       final List<AbilitySlotModel>? abilities,
-      final List<StatModel>? stats}) = _$_PokemonModel;
+      final List<StatModel>? stats,
+      @JsonKey(name: 'sprites') final SpritesModel? sprites}) = _$_PokemonModel;
 
   factory _PokemonModel.fromJson(Map<String, dynamic> json) =
       _$_PokemonModel.fromJson;
@@ -341,6 +378,9 @@ abstract class _PokemonModel implements PokemonModel {
   List<AbilitySlotModel>? get abilities;
   @override
   List<StatModel>? get stats;
+  @override
+  @JsonKey(name: 'sprites')
+  SpritesModel? get sprites;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonModelCopyWith<_$_PokemonModel> get copyWith =>
@@ -1041,5 +1081,656 @@ abstract class _StatModel implements StatModel {
   @override
   @JsonKey(ignore: true)
   _$$_StatModelCopyWith<_$_StatModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SpritesModel _$SpritesModelFromJson(Map<String, dynamic> json) {
+  return _SpritesModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SpritesModel {
+  @JsonKey(name: 'other')
+  OtherSpritesModel? get other => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SpritesModelCopyWith<SpritesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SpritesModelCopyWith<$Res> {
+  factory $SpritesModelCopyWith(
+          SpritesModel value, $Res Function(SpritesModel) then) =
+      _$SpritesModelCopyWithImpl<$Res, SpritesModel>;
+  @useResult
+  $Res call({@JsonKey(name: 'other') OtherSpritesModel? other});
+
+  $OtherSpritesModelCopyWith<$Res>? get other;
+}
+
+/// @nodoc
+class _$SpritesModelCopyWithImpl<$Res, $Val extends SpritesModel>
+    implements $SpritesModelCopyWith<$Res> {
+  _$SpritesModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? other = freezed,
+  }) {
+    return _then(_value.copyWith(
+      other: freezed == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as OtherSpritesModel?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OtherSpritesModelCopyWith<$Res>? get other {
+    if (_value.other == null) {
+      return null;
+    }
+
+    return $OtherSpritesModelCopyWith<$Res>(_value.other!, (value) {
+      return _then(_value.copyWith(other: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_SpritesModelCopyWith<$Res>
+    implements $SpritesModelCopyWith<$Res> {
+  factory _$$_SpritesModelCopyWith(
+          _$_SpritesModel value, $Res Function(_$_SpritesModel) then) =
+      __$$_SpritesModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'other') OtherSpritesModel? other});
+
+  @override
+  $OtherSpritesModelCopyWith<$Res>? get other;
+}
+
+/// @nodoc
+class __$$_SpritesModelCopyWithImpl<$Res>
+    extends _$SpritesModelCopyWithImpl<$Res, _$_SpritesModel>
+    implements _$$_SpritesModelCopyWith<$Res> {
+  __$$_SpritesModelCopyWithImpl(
+      _$_SpritesModel _value, $Res Function(_$_SpritesModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? other = freezed,
+  }) {
+    return _then(_$_SpritesModel(
+      other: freezed == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as OtherSpritesModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SpritesModel implements _SpritesModel {
+  const _$_SpritesModel({@JsonKey(name: 'other') this.other});
+
+  factory _$_SpritesModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SpritesModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'other')
+  final OtherSpritesModel? other;
+
+  @override
+  String toString() {
+    return 'SpritesModel(other: $other)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SpritesModel &&
+            (identical(other.other, this.other) || other.other == this.other));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, other);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SpritesModelCopyWith<_$_SpritesModel> get copyWith =>
+      __$$_SpritesModelCopyWithImpl<_$_SpritesModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SpritesModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SpritesModel implements SpritesModel {
+  const factory _SpritesModel(
+          {@JsonKey(name: 'other') final OtherSpritesModel? other}) =
+      _$_SpritesModel;
+
+  factory _SpritesModel.fromJson(Map<String, dynamic> json) =
+      _$_SpritesModel.fromJson;
+
+  @override
+  @JsonKey(name: 'other')
+  OtherSpritesModel? get other;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SpritesModelCopyWith<_$_SpritesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OtherSpritesModel _$OtherSpritesModelFromJson(Map<String, dynamic> json) {
+  return _OtherSpritesModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OtherSpritesModel {
+  @JsonKey(name: 'dream_world')
+  DreamWorldModel? get dreamWorld => throw _privateConstructorUsedError;
+  @JsonKey(name: 'official-artwork')
+  OfficialArtworkModel? get officialArtwork =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OtherSpritesModelCopyWith<OtherSpritesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OtherSpritesModelCopyWith<$Res> {
+  factory $OtherSpritesModelCopyWith(
+          OtherSpritesModel value, $Res Function(OtherSpritesModel) then) =
+      _$OtherSpritesModelCopyWithImpl<$Res, OtherSpritesModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'dream_world') DreamWorldModel? dreamWorld,
+      @JsonKey(name: 'official-artwork')
+      OfficialArtworkModel? officialArtwork});
+
+  $DreamWorldModelCopyWith<$Res>? get dreamWorld;
+  $OfficialArtworkModelCopyWith<$Res>? get officialArtwork;
+}
+
+/// @nodoc
+class _$OtherSpritesModelCopyWithImpl<$Res, $Val extends OtherSpritesModel>
+    implements $OtherSpritesModelCopyWith<$Res> {
+  _$OtherSpritesModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dreamWorld = freezed,
+    Object? officialArtwork = freezed,
+  }) {
+    return _then(_value.copyWith(
+      dreamWorld: freezed == dreamWorld
+          ? _value.dreamWorld
+          : dreamWorld // ignore: cast_nullable_to_non_nullable
+              as DreamWorldModel?,
+      officialArtwork: freezed == officialArtwork
+          ? _value.officialArtwork
+          : officialArtwork // ignore: cast_nullable_to_non_nullable
+              as OfficialArtworkModel?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DreamWorldModelCopyWith<$Res>? get dreamWorld {
+    if (_value.dreamWorld == null) {
+      return null;
+    }
+
+    return $DreamWorldModelCopyWith<$Res>(_value.dreamWorld!, (value) {
+      return _then(_value.copyWith(dreamWorld: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OfficialArtworkModelCopyWith<$Res>? get officialArtwork {
+    if (_value.officialArtwork == null) {
+      return null;
+    }
+
+    return $OfficialArtworkModelCopyWith<$Res>(_value.officialArtwork!,
+        (value) {
+      return _then(_value.copyWith(officialArtwork: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_OtherSpritesModelCopyWith<$Res>
+    implements $OtherSpritesModelCopyWith<$Res> {
+  factory _$$_OtherSpritesModelCopyWith(_$_OtherSpritesModel value,
+          $Res Function(_$_OtherSpritesModel) then) =
+      __$$_OtherSpritesModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'dream_world') DreamWorldModel? dreamWorld,
+      @JsonKey(name: 'official-artwork')
+      OfficialArtworkModel? officialArtwork});
+
+  @override
+  $DreamWorldModelCopyWith<$Res>? get dreamWorld;
+  @override
+  $OfficialArtworkModelCopyWith<$Res>? get officialArtwork;
+}
+
+/// @nodoc
+class __$$_OtherSpritesModelCopyWithImpl<$Res>
+    extends _$OtherSpritesModelCopyWithImpl<$Res, _$_OtherSpritesModel>
+    implements _$$_OtherSpritesModelCopyWith<$Res> {
+  __$$_OtherSpritesModelCopyWithImpl(
+      _$_OtherSpritesModel _value, $Res Function(_$_OtherSpritesModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dreamWorld = freezed,
+    Object? officialArtwork = freezed,
+  }) {
+    return _then(_$_OtherSpritesModel(
+      dreamWorld: freezed == dreamWorld
+          ? _value.dreamWorld
+          : dreamWorld // ignore: cast_nullable_to_non_nullable
+              as DreamWorldModel?,
+      officialArtwork: freezed == officialArtwork
+          ? _value.officialArtwork
+          : officialArtwork // ignore: cast_nullable_to_non_nullable
+              as OfficialArtworkModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_OtherSpritesModel implements _OtherSpritesModel {
+  const _$_OtherSpritesModel(
+      {@JsonKey(name: 'dream_world') this.dreamWorld,
+      @JsonKey(name: 'official-artwork') this.officialArtwork});
+
+  factory _$_OtherSpritesModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OtherSpritesModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'dream_world')
+  final DreamWorldModel? dreamWorld;
+  @override
+  @JsonKey(name: 'official-artwork')
+  final OfficialArtworkModel? officialArtwork;
+
+  @override
+  String toString() {
+    return 'OtherSpritesModel(dreamWorld: $dreamWorld, officialArtwork: $officialArtwork)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OtherSpritesModel &&
+            (identical(other.dreamWorld, dreamWorld) ||
+                other.dreamWorld == dreamWorld) &&
+            (identical(other.officialArtwork, officialArtwork) ||
+                other.officialArtwork == officialArtwork));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, dreamWorld, officialArtwork);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OtherSpritesModelCopyWith<_$_OtherSpritesModel> get copyWith =>
+      __$$_OtherSpritesModelCopyWithImpl<_$_OtherSpritesModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OtherSpritesModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OtherSpritesModel implements OtherSpritesModel {
+  const factory _OtherSpritesModel(
+      {@JsonKey(name: 'dream_world') final DreamWorldModel? dreamWorld,
+      @JsonKey(name: 'official-artwork')
+      final OfficialArtworkModel? officialArtwork}) = _$_OtherSpritesModel;
+
+  factory _OtherSpritesModel.fromJson(Map<String, dynamic> json) =
+      _$_OtherSpritesModel.fromJson;
+
+  @override
+  @JsonKey(name: 'dream_world')
+  DreamWorldModel? get dreamWorld;
+  @override
+  @JsonKey(name: 'official-artwork')
+  OfficialArtworkModel? get officialArtwork;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OtherSpritesModelCopyWith<_$_OtherSpritesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DreamWorldModel _$DreamWorldModelFromJson(Map<String, dynamic> json) {
+  return _DreamWorldModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DreamWorldModel {
+  @JsonKey(name: 'front_default')
+  String? get frontDefault => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DreamWorldModelCopyWith<DreamWorldModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DreamWorldModelCopyWith<$Res> {
+  factory $DreamWorldModelCopyWith(
+          DreamWorldModel value, $Res Function(DreamWorldModel) then) =
+      _$DreamWorldModelCopyWithImpl<$Res, DreamWorldModel>;
+  @useResult
+  $Res call({@JsonKey(name: 'front_default') String? frontDefault});
+}
+
+/// @nodoc
+class _$DreamWorldModelCopyWithImpl<$Res, $Val extends DreamWorldModel>
+    implements $DreamWorldModelCopyWith<$Res> {
+  _$DreamWorldModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? frontDefault = freezed,
+  }) {
+    return _then(_value.copyWith(
+      frontDefault: freezed == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_DreamWorldModelCopyWith<$Res>
+    implements $DreamWorldModelCopyWith<$Res> {
+  factory _$$_DreamWorldModelCopyWith(
+          _$_DreamWorldModel value, $Res Function(_$_DreamWorldModel) then) =
+      __$$_DreamWorldModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'front_default') String? frontDefault});
+}
+
+/// @nodoc
+class __$$_DreamWorldModelCopyWithImpl<$Res>
+    extends _$DreamWorldModelCopyWithImpl<$Res, _$_DreamWorldModel>
+    implements _$$_DreamWorldModelCopyWith<$Res> {
+  __$$_DreamWorldModelCopyWithImpl(
+      _$_DreamWorldModel _value, $Res Function(_$_DreamWorldModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? frontDefault = freezed,
+  }) {
+    return _then(_$_DreamWorldModel(
+      frontDefault: freezed == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DreamWorldModel implements _DreamWorldModel {
+  const _$_DreamWorldModel({@JsonKey(name: 'front_default') this.frontDefault});
+
+  factory _$_DreamWorldModel.fromJson(Map<String, dynamic> json) =>
+      _$$_DreamWorldModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'front_default')
+  final String? frontDefault;
+
+  @override
+  String toString() {
+    return 'DreamWorldModel(frontDefault: $frontDefault)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DreamWorldModel &&
+            (identical(other.frontDefault, frontDefault) ||
+                other.frontDefault == frontDefault));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, frontDefault);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DreamWorldModelCopyWith<_$_DreamWorldModel> get copyWith =>
+      __$$_DreamWorldModelCopyWithImpl<_$_DreamWorldModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DreamWorldModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DreamWorldModel implements DreamWorldModel {
+  const factory _DreamWorldModel(
+          {@JsonKey(name: 'front_default') final String? frontDefault}) =
+      _$_DreamWorldModel;
+
+  factory _DreamWorldModel.fromJson(Map<String, dynamic> json) =
+      _$_DreamWorldModel.fromJson;
+
+  @override
+  @JsonKey(name: 'front_default')
+  String? get frontDefault;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DreamWorldModelCopyWith<_$_DreamWorldModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OfficialArtworkModel _$OfficialArtworkModelFromJson(Map<String, dynamic> json) {
+  return _OfficialArtworkModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OfficialArtworkModel {
+  @JsonKey(name: 'front_default')
+  String? get frontDefault => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OfficialArtworkModelCopyWith<OfficialArtworkModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OfficialArtworkModelCopyWith<$Res> {
+  factory $OfficialArtworkModelCopyWith(OfficialArtworkModel value,
+          $Res Function(OfficialArtworkModel) then) =
+      _$OfficialArtworkModelCopyWithImpl<$Res, OfficialArtworkModel>;
+  @useResult
+  $Res call({@JsonKey(name: 'front_default') String? frontDefault});
+}
+
+/// @nodoc
+class _$OfficialArtworkModelCopyWithImpl<$Res,
+        $Val extends OfficialArtworkModel>
+    implements $OfficialArtworkModelCopyWith<$Res> {
+  _$OfficialArtworkModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? frontDefault = freezed,
+  }) {
+    return _then(_value.copyWith(
+      frontDefault: freezed == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_OfficialArtworkModelCopyWith<$Res>
+    implements $OfficialArtworkModelCopyWith<$Res> {
+  factory _$$_OfficialArtworkModelCopyWith(_$_OfficialArtworkModel value,
+          $Res Function(_$_OfficialArtworkModel) then) =
+      __$$_OfficialArtworkModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'front_default') String? frontDefault});
+}
+
+/// @nodoc
+class __$$_OfficialArtworkModelCopyWithImpl<$Res>
+    extends _$OfficialArtworkModelCopyWithImpl<$Res, _$_OfficialArtworkModel>
+    implements _$$_OfficialArtworkModelCopyWith<$Res> {
+  __$$_OfficialArtworkModelCopyWithImpl(_$_OfficialArtworkModel _value,
+      $Res Function(_$_OfficialArtworkModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? frontDefault = freezed,
+  }) {
+    return _then(_$_OfficialArtworkModel(
+      frontDefault: freezed == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_OfficialArtworkModel implements _OfficialArtworkModel {
+  const _$_OfficialArtworkModel(
+      {@JsonKey(name: 'front_default') this.frontDefault});
+
+  factory _$_OfficialArtworkModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OfficialArtworkModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'front_default')
+  final String? frontDefault;
+
+  @override
+  String toString() {
+    return 'OfficialArtworkModel(frontDefault: $frontDefault)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OfficialArtworkModel &&
+            (identical(other.frontDefault, frontDefault) ||
+                other.frontDefault == frontDefault));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, frontDefault);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OfficialArtworkModelCopyWith<_$_OfficialArtworkModel> get copyWith =>
+      __$$_OfficialArtworkModelCopyWithImpl<_$_OfficialArtworkModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_OfficialArtworkModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OfficialArtworkModel implements OfficialArtworkModel {
+  const factory _OfficialArtworkModel(
+          {@JsonKey(name: 'front_default') final String? frontDefault}) =
+      _$_OfficialArtworkModel;
+
+  factory _OfficialArtworkModel.fromJson(Map<String, dynamic> json) =
+      _$_OfficialArtworkModel.fromJson;
+
+  @override
+  @JsonKey(name: 'front_default')
+  String? get frontDefault;
+  @override
+  @JsonKey(ignore: true)
+  _$$_OfficialArtworkModelCopyWith<_$_OfficialArtworkModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

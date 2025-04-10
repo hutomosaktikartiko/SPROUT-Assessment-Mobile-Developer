@@ -24,6 +24,9 @@ _$_PokemonModel _$$_PokemonModelFromJson(Map<String, dynamic> json) =>
       stats: (json['stats'] as List<dynamic>?)
           ?.map((e) => StatModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sprites: json['sprites'] == null
+          ? null
+          : SpritesModel.fromJson(json['sprites'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PokemonModelToJson(_$_PokemonModel instance) =>
@@ -36,6 +39,7 @@ Map<String, dynamic> _$$_PokemonModelToJson(_$_PokemonModel instance) =>
       'weight': instance.weight,
       'abilities': instance.abilities,
       'stats': instance.stats,
+      'sprites': instance.sprites,
     };
 
 _$_TypeSlotModel _$$_TypeSlotModelFromJson(Map<String, dynamic> json) =>
@@ -92,4 +96,57 @@ Map<String, dynamic> _$$_StatModelToJson(_$_StatModel instance) =>
     <String, dynamic>{
       'base_stat': instance.baseStat,
       'stat': instance.stat,
+    };
+
+_$_SpritesModel _$$_SpritesModelFromJson(Map<String, dynamic> json) =>
+    _$_SpritesModel(
+      other: json['other'] == null
+          ? null
+          : OtherSpritesModel.fromJson(json['other'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SpritesModelToJson(_$_SpritesModel instance) =>
+    <String, dynamic>{
+      'other': instance.other,
+    };
+
+_$_OtherSpritesModel _$$_OtherSpritesModelFromJson(Map<String, dynamic> json) =>
+    _$_OtherSpritesModel(
+      dreamWorld: json['dream_world'] == null
+          ? null
+          : DreamWorldModel.fromJson(
+              json['dream_world'] as Map<String, dynamic>),
+      officialArtwork: json['official-artwork'] == null
+          ? null
+          : OfficialArtworkModel.fromJson(
+              json['official-artwork'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_OtherSpritesModelToJson(
+        _$_OtherSpritesModel instance) =>
+    <String, dynamic>{
+      'dream_world': instance.dreamWorld,
+      'official-artwork': instance.officialArtwork,
+    };
+
+_$_DreamWorldModel _$$_DreamWorldModelFromJson(Map<String, dynamic> json) =>
+    _$_DreamWorldModel(
+      frontDefault: json['front_default'] as String?,
+    );
+
+Map<String, dynamic> _$$_DreamWorldModelToJson(_$_DreamWorldModel instance) =>
+    <String, dynamic>{
+      'front_default': instance.frontDefault,
+    };
+
+_$_OfficialArtworkModel _$$_OfficialArtworkModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_OfficialArtworkModel(
+      frontDefault: json['front_default'] as String?,
+    );
+
+Map<String, dynamic> _$$_OfficialArtworkModelToJson(
+        _$_OfficialArtworkModel instance) =>
+    <String, dynamic>{
+      'front_default': instance.frontDefault,
     };

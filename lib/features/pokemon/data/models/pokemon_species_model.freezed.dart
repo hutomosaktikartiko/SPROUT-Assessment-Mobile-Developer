@@ -26,6 +26,8 @@ mixin _$PokemonSpeciesModel {
   List<NamedResourceModel>? get eggGroups => throw _privateConstructorUsedError;
   @JsonKey(name: 'hatch_counter')
   int? get hatchCounter => throw _privateConstructorUsedError;
+  @JsonKey(name: 'color')
+  NamedResourceModel? get color => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +44,10 @@ abstract class $PokemonSpeciesModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'gender_rate') int? genderRate,
       @JsonKey(name: 'egg_groups') List<NamedResourceModel>? eggGroups,
-      @JsonKey(name: 'hatch_counter') int? hatchCounter});
+      @JsonKey(name: 'hatch_counter') int? hatchCounter,
+      @JsonKey(name: 'color') NamedResourceModel? color});
+
+  $NamedResourceModelCopyWith<$Res>? get color;
 }
 
 /// @nodoc
@@ -61,6 +66,7 @@ class _$PokemonSpeciesModelCopyWithImpl<$Res, $Val extends PokemonSpeciesModel>
     Object? genderRate = freezed,
     Object? eggGroups = freezed,
     Object? hatchCounter = freezed,
+    Object? color = freezed,
   }) {
     return _then(_value.copyWith(
       genderRate: freezed == genderRate
@@ -75,7 +81,23 @@ class _$PokemonSpeciesModelCopyWithImpl<$Res, $Val extends PokemonSpeciesModel>
           ? _value.hatchCounter
           : hatchCounter // ignore: cast_nullable_to_non_nullable
               as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as NamedResourceModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NamedResourceModelCopyWith<$Res>? get color {
+    if (_value.color == null) {
+      return null;
+    }
+
+    return $NamedResourceModelCopyWith<$Res>(_value.color!, (value) {
+      return _then(_value.copyWith(color: value) as $Val);
+    });
   }
 }
 
@@ -90,7 +112,11 @@ abstract class _$$_PokemonSpeciesModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'gender_rate') int? genderRate,
       @JsonKey(name: 'egg_groups') List<NamedResourceModel>? eggGroups,
-      @JsonKey(name: 'hatch_counter') int? hatchCounter});
+      @JsonKey(name: 'hatch_counter') int? hatchCounter,
+      @JsonKey(name: 'color') NamedResourceModel? color});
+
+  @override
+  $NamedResourceModelCopyWith<$Res>? get color;
 }
 
 /// @nodoc
@@ -107,6 +133,7 @@ class __$$_PokemonSpeciesModelCopyWithImpl<$Res>
     Object? genderRate = freezed,
     Object? eggGroups = freezed,
     Object? hatchCounter = freezed,
+    Object? color = freezed,
   }) {
     return _then(_$_PokemonSpeciesModel(
       genderRate: freezed == genderRate
@@ -121,6 +148,10 @@ class __$$_PokemonSpeciesModelCopyWithImpl<$Res>
           ? _value.hatchCounter
           : hatchCounter // ignore: cast_nullable_to_non_nullable
               as int?,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as NamedResourceModel?,
     ));
   }
 }
@@ -131,7 +162,8 @@ class _$_PokemonSpeciesModel implements _PokemonSpeciesModel {
   const _$_PokemonSpeciesModel(
       {@JsonKey(name: 'gender_rate') this.genderRate,
       @JsonKey(name: 'egg_groups') final List<NamedResourceModel>? eggGroups,
-      @JsonKey(name: 'hatch_counter') this.hatchCounter})
+      @JsonKey(name: 'hatch_counter') this.hatchCounter,
+      @JsonKey(name: 'color') this.color})
       : _eggGroups = eggGroups;
 
   factory _$_PokemonSpeciesModel.fromJson(Map<String, dynamic> json) =>
@@ -154,10 +186,13 @@ class _$_PokemonSpeciesModel implements _PokemonSpeciesModel {
   @override
   @JsonKey(name: 'hatch_counter')
   final int? hatchCounter;
+  @override
+  @JsonKey(name: 'color')
+  final NamedResourceModel? color;
 
   @override
   String toString() {
-    return 'PokemonSpeciesModel(genderRate: $genderRate, eggGroups: $eggGroups, hatchCounter: $hatchCounter)';
+    return 'PokemonSpeciesModel(genderRate: $genderRate, eggGroups: $eggGroups, hatchCounter: $hatchCounter, color: $color)';
   }
 
   @override
@@ -170,13 +205,14 @@ class _$_PokemonSpeciesModel implements _PokemonSpeciesModel {
             const DeepCollectionEquality()
                 .equals(other._eggGroups, _eggGroups) &&
             (identical(other.hatchCounter, hatchCounter) ||
-                other.hatchCounter == hatchCounter));
+                other.hatchCounter == hatchCounter) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, genderRate,
-      const DeepCollectionEquality().hash(_eggGroups), hatchCounter);
+      const DeepCollectionEquality().hash(_eggGroups), hatchCounter, color);
 
   @JsonKey(ignore: true)
   @override
@@ -197,8 +233,9 @@ abstract class _PokemonSpeciesModel implements PokemonSpeciesModel {
   const factory _PokemonSpeciesModel(
       {@JsonKey(name: 'gender_rate') final int? genderRate,
       @JsonKey(name: 'egg_groups') final List<NamedResourceModel>? eggGroups,
-      @JsonKey(name: 'hatch_counter')
-      final int? hatchCounter}) = _$_PokemonSpeciesModel;
+      @JsonKey(name: 'hatch_counter') final int? hatchCounter,
+      @JsonKey(name: 'color')
+      final NamedResourceModel? color}) = _$_PokemonSpeciesModel;
 
   factory _PokemonSpeciesModel.fromJson(Map<String, dynamic> json) =
       _$_PokemonSpeciesModel.fromJson;
@@ -212,6 +249,9 @@ abstract class _PokemonSpeciesModel implements PokemonSpeciesModel {
   @override
   @JsonKey(name: 'hatch_counter')
   int? get hatchCounter;
+  @override
+  @JsonKey(name: 'color')
+  NamedResourceModel? get color;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonSpeciesModelCopyWith<_$_PokemonSpeciesModel> get copyWith =>

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sprout_pokemon">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="sprout_pokemon"
         android:name="${applicationName}"

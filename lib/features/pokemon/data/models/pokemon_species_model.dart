@@ -11,6 +11,7 @@ class PokemonSpeciesModel with _$PokemonSpeciesModel {
     @JsonKey(name: 'gender_rate') int? genderRate,
     @JsonKey(name: 'egg_groups') List<NamedResourceModel>? eggGroups,
     @JsonKey(name: 'hatch_counter') int? hatchCounter,
+    @JsonKey(name: 'color') NamedResourceModel? color,
   }) = _PokemonSpeciesModel;
 
   factory PokemonSpeciesModel.fromJson(Map<String, dynamic> json) =>

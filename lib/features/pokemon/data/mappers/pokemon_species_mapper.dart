@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
+
 import '../../domain/entities/pokemon_species_entity.dart';
 import '../models/pokemon_species_model.dart';
 
 extension PokemonSpeciesMapper on PokemonSpeciesModel {
   PokemonSpeciesEntity toEntity() {
     return PokemonSpeciesEntity(
+      color: _getColorFromName(color?.name ?? 'Unknown'),
       gender: _convertGenderRate(genderRate),
       eggGroups: eggGroups?.map((e) => e.name ?? 'Unknown').toList() ?? [],
       hatchCycle: hatchCounter ?? 0,
@@ -16,5 +19,28 @@ extension PokemonSpeciesMapper on PokemonSpeciesModel {
     if (rate == 0) return 'Male';
     if (rate == 8) return 'Female';
     return 'Male/Female';
+  }
+
+  Color _getColorFromName(String name) {
+    switch (name) {
+      case 'red':
+        return Colors.red;
+      case 'blue':
+        return Colors.blue;
+      case 'green':
+        return Colors.green;
+      case 'yellow':
+        return Colors.yellow;
+      case 'pink':
+        return Colors.pink;
+      case 'purple':
+        return Colors.purple;
+      case 'brown':
+        return Colors.brown;
+      case 'gray':
+        return Colors.grey;
+      default:
+        return Colors.black; // Default color if not found
+    }
   }
 }

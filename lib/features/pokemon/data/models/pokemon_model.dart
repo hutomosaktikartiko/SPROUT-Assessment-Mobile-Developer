@@ -16,6 +16,7 @@ class PokemonModel with _$PokemonModel {
     int? weight,
     List<AbilitySlotModel>? abilities,
     List<StatModel>? stats,
+    @JsonKey(name: 'sprites') SpritesModel? sprites,
   }) = _PokemonModel;
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) =>
@@ -65,4 +66,45 @@ class StatModel with _$StatModel {
 
   factory StatModel.fromJson(Map<String, dynamic> json) =>
       _$StatModelFromJson(json);
+}
+
+@freezed
+class SpritesModel with _$SpritesModel {
+  const factory SpritesModel({
+    @JsonKey(name: 'other') OtherSpritesModel? other,
+  }) = _SpritesModel;
+
+  factory SpritesModel.fromJson(Map<String, dynamic> json) =>
+      _$SpritesModelFromJson(json);
+}
+
+@freezed
+class OtherSpritesModel with _$OtherSpritesModel {
+  const factory OtherSpritesModel({
+    @JsonKey(name: 'dream_world') DreamWorldModel? dreamWorld,
+    @JsonKey(name: 'official-artwork') OfficialArtworkModel? officialArtwork,
+  }) = _OtherSpritesModel;
+
+  factory OtherSpritesModel.fromJson(Map<String, dynamic> json) =>
+      _$OtherSpritesModelFromJson(json);
+}
+
+@freezed
+class DreamWorldModel with _$DreamWorldModel {
+  const factory DreamWorldModel({
+    @JsonKey(name: 'front_default') String? frontDefault,
+  }) = _DreamWorldModel;
+
+  factory DreamWorldModel.fromJson(Map<String, dynamic> json) =>
+      _$DreamWorldModelFromJson(json);
+}
+
+@freezed
+class OfficialArtworkModel with _$OfficialArtworkModel {
+  const factory OfficialArtworkModel({
+    @JsonKey(name: 'front_default') String? frontDefault,
+  }) = _OfficialArtworkModel;
+
+  factory OfficialArtworkModel.fromJson(Map<String, dynamic> json) =>
+      _$OfficialArtworkModelFromJson(json);
 }
